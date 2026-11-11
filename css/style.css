@@ -346,3 +346,4 @@ input,textarea{-webkit-user-select:text;-moz-user-select:text;user-select:text}
 .menu-card:hover .mc-img img,.feat-card:hover .feat-img img{transform:scale(1.05)}
 .mc-img img,.feat-img img{transition:transform .5s}
 @media(max-width:600px){.hero-geo{font-size:11.5vw;letter-spacing:.02em}.hero-sub{letter-spacing:.2em}.hero-desc{padding:0 20px}}
+.hero{max-height:1200px}
