@@ -69,7 +69,7 @@ function initCounters() {
         const step = ts => {
           if (!s) s = ts;
           const p = Math.min((ts-s)/1800, 1), ease = 1 - Math.pow(1-p, 3);
-          e.target.textContent = Math.round(to * ease).toLocaleString('ru');
+          e.target.textContent = Math.round(to * ease).toLocaleString('ru') + (e.target.dataset.suffix || '');
           if (p < 1) requestAnimationFrame(step);
         };
         requestAnimationFrame(step);
@@ -116,7 +116,8 @@ function initGallery() {
   if (!lb) return;
   document.querySelectorAll('.gi').forEach(item => {
     item.addEventListener('click', () => {
-      lb.querySelector('.lb-inner').style.backgroundImage = getComputedStyle(item).backgroundImage;
+      const im = item.querySelector('img');
+      lb.querySelector('.lb-inner').style.backgroundImage = im ? 'url("' + im.src + '")' : getComputedStyle(item).backgroundImage;
       lb.classList.add('open');
     });
   });
@@ -256,6 +257,7 @@ function initPhoneSelector() {
     });
     phoneInp.addEventListener('keydown', e => {
       const allow = ['Backspace','Delete','ArrowLeft','ArrowRight','Tab','Home','End'];
+      if (e.ctrlKey || e.metaKey) return;
       if (!allow.includes(e.key) && !/^[0-9]$/.test(e.key)) e.preventDefault();
     });
     phoneInp.setAttribute('inputmode', 'numeric');

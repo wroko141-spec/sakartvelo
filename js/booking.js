@@ -38,13 +38,17 @@ const Booking = {
     document.head.appendChild(s);
   },
 
+  localDate(d) {
+    return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  },
+
   initDate() {
     const inp = document.getElementById('bDate');
     if (!inp) return;
     const today = new Date();
     const max   = new Date(); max.setMonth(max.getMonth() + 3);
-    inp.min = today.toISOString().split('T')[0];
-    inp.max = max.toISOString().split('T')[0];
+    inp.min = this.localDate(today);
+    inp.max = this.localDate(max);
     inp.addEventListener('change', () => {
       this.date = inp.value;
       this.refreshSlots();
@@ -76,7 +80,7 @@ const Booking = {
     if (!wrap || !this.date) return;
     const occ = (this.takenSlots[this.date] || {});
     const now = new Date();
-    const todayStr = now.toISOString().split('T')[0];
+    const todayStr = this.localDate(now);
     wrap.querySelectorAll('.slot').forEach(btn => {
       const t = btn.dataset.t;
       const past = this.date === todayStr && parseInt(t) <= now.getHours();
