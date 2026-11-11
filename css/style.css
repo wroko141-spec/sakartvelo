@@ -347,3 +347,4 @@ input,textarea{-webkit-user-select:text;-moz-user-select:text;user-select:text}
 .mc-img img,.feat-img img{transition:transform .5s}
 @media(max-width:600px){.hero-geo{font-size:11.5vw;letter-spacing:.02em}.hero-sub{letter-spacing:.2em}.hero-desc{padding:0 20px}}
 .hero{max-height:1200px}
+.gal-grid{grid-template-rows:200px 200px 220px}.gi:last-child{grid-column:1/-1}@media(max-width:900px){.gal-grid{grid-template-rows:auto}}
