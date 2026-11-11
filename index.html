@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sakartvelo &mdash; Грузинский ресторан</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Preloader -->
+<div id="preloader">
+  <div class="pl-logo">საკართველო</div>
+  <div class="pl-bar"></div>
+</div>
+
+<!-- Cursor -->
+<div id="cDot"></div>
+<div id="cRing"></div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<!-- Cart Bubble -->
+<div id="cartBubble">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="#0d0b08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="3" y1="6" x2="21" y2="6" stroke="#0d0b08" stroke-width="2" stroke-linecap="round"/>
+  <path d="M16 10a4 4 0 01-8 0" stroke="#0d0b08" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+  <span id="cartBadge">0</span>
+</div>
+
+<!-- Cart Drawer -->
+<div id="cartDrawer">
+  <div class="cart-h">
+    <h2>Корзина</h2>
+    <button id="cartClose">✕</button>
+  </div>
+  <div id="cartEmpty">Корзина пуста<br><small>Добавьте блюда из меню</small></div>
+  <div id="cartList"></div>
+  <div id="cartFooter" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-l">Итого</span>
+      <span id="cartTotal">0 руб.</span>
+    </div>
+    <div class="cart-acts">
+      <button id="cartClear">Очистить</button>
+      <button id="cartBook">Забронировать стол →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-logo" data-page="home">საკართველო</div>
+  <div class="burger" id="burger">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-menu" id="navMenu">
+    <a class="nav-link" data-page="home">Главная</a>
+    <a class="nav-link" data-page="menu">Меню</a>
+    <a class="nav-link" data-page="wine">Вина</a>
+    <button class="nav-book" data-page="booking">Забронировать</button>
+  </div>
+</nav>
+
+<!-- ================================================================
+     HOME
+================================================================ -->
+<section class="page active" id="pg-home">
+
+  <!-- Hero -->
+  <div class="hero">
+    <canvas id="particles"></canvas>
+    <div class="hero-inner">
+      <div class="hero-geo">საკართველო</div>
+      <div class="hero-sub">Грузинский ресторан &bull; Тбилиси, 2012</div>
+      <div class="hero-div"></div>
+      <div class="hero-desc" style="text-align:center;margin:0 auto">Где древние рецептуры встречаются с душой гор Кавказа</div>
+      <div class="hero-btns">
+        <button class="btn-gold" data-page="menu">Смотреть меню</button>
+        <button class="btn-outline" data-page="booking">Забронировать стол</button>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
+        <rect x="1" y="1" width="14" height="22" rx="7" stroke="#c4a050" stroke-width="1.5"/>
+        <circle cx="8" cy="7" r="2" fill="#c4a050"><animate attributeName="cy" values="7;14;7" dur="2s" repeatCount="indefinite"/></circle>
+      </svg>
+      Прокрутите
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-n" data-counter="12">12</span><span class="stat-l">Лет опыта</span></div>
+    <div class="stat"><span class="stat-n" data-counter="200">200+</span><span class="stat-l">Блюд в меню</span></div>
+    <div class="stat"><span class="stat-n" data-counter="80">80</span><span class="stat-l">Мест в зале</span></div>
+    <div class="stat"><span class="stat-n" data-counter="48000">48к</span><span class="stat-l">Довольных гостей</span></div>
+  </div>
+
+  <!-- About -->
+  <div class="about-sec">
+    <span class="s-tag">О ресторане</span>
+    <h2 class="s-title reveal">Наследие грузинской кухни в каждом блюде</h2>
+    <div class="about-grid">
+      <div class="about-text reveal rv1">
+        <p>С 2012 года мы несём аутентичную грузинскую кухню в сердце Тбилиси нашим гостям.</p>
+        <p>Каждый рецепт хранит в себе историю поколений. Мы используем только лучшие локальные ингредиенты.</p>
+        <p>Гостеприимство для нас — это сакральный объект. Мы встречаем каждого гостя так, как будто он пришёл к нам домой.</p>
+      </div>
+      <div class="about-vis reveal rv2" style="overflow:hidden"><svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+  <polygon points="60,15 20,90 100,90" fill="#c4a050" opacity=".15"/>
+  <polygon points="60,25 30,85 90,85" fill="#c4a050" opacity=".2"/>
+  <polygon points="60,35 38,80 82,80" fill="#c4a050" opacity=".3"/>
+  <polygon points="60,35 50,55 70,55" fill="white" opacity=".4"/>
+  <circle cx="85" cy="30" r="8" fill="#c4a050" opacity=".2"/>
+  <circle cx="90" cy="25" r="5" fill="#c4a050" opacity=".15"/>
+</svg>
+        <div class="about-badge">с. 2012 &bull; Тбилиси</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured -->
+  <div class="feat-sec">
+    <div class="sec-head">
+      <span class="s-tag">Популярное</span>
+      <h2 class="s-title reveal" style="margin:0 auto;text-align:center">Хиты сезона</h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card reveal rv1">
+        <div class="feat-img"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <ellipse cx="40" cy="44" rx="30" ry="20" fill="#c4a050" opacity=".2"/>
+  <ellipse cx="40" cy="42" rx="22" ry="13" fill="#c4a050" opacity=".4"/>
+  <ellipse cx="40" cy="40" rx="14" ry="8" fill="#e8c97a" opacity=".7"/>
+  <circle cx="40" cy="38" r="5" fill="#f5e6b0"/>
+</svg></div>
+        <div class="feat-body">
+          <div class="feat-name">Хачапури</div>
+          <div class="feat-desc">Грузинский хлебный пирог с сыром сулугуни и яйцом</div>
+          <div class="feat-price">480 руб.</div>
+          <button class="feat-add" onclick="Cart.add({id:'h1',name:'Хачапури',price:480})">+ Добавить в корзину</button>
+        </div>
+      </div>
+      <div class="feat-card reveal rv2">
+        <div class="feat-img"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <path d="M40 15 C25 30 18 42 22 54 C26 66 54 66 58 54 C62 42 55 30 40 15Z" fill="#c4a050" opacity=".3"/>
+  <path d="M40 15 C32 28 28 38 30 50 C32 58 48 58 50 50 C52 38 48 28 40 15Z" fill="#e8c97a" opacity=".5"/>
+  <circle cx="40" cy="16" r="5" fill="#c4a050" opacity=".7"/>
+</svg></div>
+        <div class="feat-body">
+          <div class="feat-name">Хинкали</div>
+          <div class="feat-desc">Грузинские пельмени с мясом, онионом и специями</div>
+          <div class="feat-price">620 руб.</div>
+          <button class="feat-add" onclick="Cart.add({id:'h2',name:'Хинкали',price:620})">+ Добавить в корзину</button>
+        </div>
+      </div>
+      <div class="feat-card reveal rv3">
+        <div class="feat-img"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <rect x="15" y="28" width="50" height="28" rx="14" fill="#8b3a1a" opacity=".25"/>
+  <rect x="20" y="32" width="40" height="20" rx="10" fill="#c4501a" opacity=".4"/>
+  <rect x="26" y="36" width="28" height="12" rx="6" fill="#e87040" opacity=".6"/>
+  <line x1="15" y1="42" x2="65" y2="42" stroke="#c4a050" stroke-width="1" opacity=".4"/>
+</svg></div>
+        <div class="feat-body">
+          <div class="feat-name">Одзахури</div>
+          <div class="feat-desc">Тушеная баранина с сыром из Тбилиси</div>
+          <div class="feat-price">340 руб.</div>
+          <button class="feat-add" onclick="Cart.add({id:'h3',name:'Одзахури',price:340})">+ Добавить в корзину</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery-sec">
+    <div class="sec-head">
+      <span class="s-tag">Интерьер</span>
+      <h2 class="s-title reveal" style="margin:0 auto;text-align:center">Атмосфера ресторана</h2>
+    </div>
+    <div class="gal-grid">
+      <div class="gi g1" style="position:relative;overflow:hidden"><svg width="100%" height="100%" viewBox="0 0 200 150" fill="none">
+  <rect width="200" height="150" fill="#1a100a"/>
+  <rect x="20" y="40" width="160" height="80" rx="4" fill="#2a1810" opacity=".8"/>
+  <rect x="40" y="55" width="50" height="50" rx="2" fill="#3a2218" opacity=".9"/>
+  <rect x="110" y="55" width="50" height="50" rx="2" fill="#3a2218" opacity=".9"/>
+  <rect x="80" y="30" width="40" height="6" rx="3" fill="#c4a050" opacity=".5"/>
+  <circle cx="100" cy="20" r="8" fill="#c4a050" opacity=".3"/>
+  <line x1="100" y1="28" x2="100" y2="40" stroke="#c4a050" stroke-width="1" opacity=".4"/>
+</svg><div class="gi-cap" style="opacity:1">Основной зал</div></div>
+      <div class="gi g2" style="position:relative;overflow:hidden"><svg width="100%" height="100%" viewBox="0 0 200 150" fill="none">
+  <rect width="200" height="150" fill="#0a1220"/>
+  <rect x="10" y="20" width="30" height="110" rx="4" fill="#1a2a40" opacity=".8"/>
+  <rect x="50" y="20" width="30" height="110" rx="4" fill="#1a2a40" opacity=".8"/>
+  <rect x="90" y="20" width="30" height="110" rx="4" fill="#1a2a40" opacity=".8"/>
+  <rect x="130" y="20" width="30" height="110" rx="4" fill="#1a2a40" opacity=".8"/>
+  <rect x="0" y="135" width="200" height="15" fill="#2a3a50" opacity=".6"/>
+  <circle cx="160" cy="40" r="15" fill="#8b1a1a" opacity=".4"/>
+</svg><div class="gi-cap" style="opacity:1">Винный погреб</div></div>
+      <div class="gi g3" style="position:relative;overflow:hidden"><svg width="100%" height="100%" viewBox="0 0 200 150" fill="none">
+  <rect width="200" height="150" fill="#10140a"/>
+  <path d="M0 100 Q50 70 100 80 Q150 90 200 60 L200 150 L0 150Z" fill="#1a2a10" opacity=".8"/>
+  <circle cx="40" cy="50" r="25" fill="#2a4020" opacity=".6"/>
+  <circle cx="160" cy="40" r="30" fill="#2a4020" opacity=".5"/>
+  <rect x="80" y="90" width="40" height="40" rx="2" fill="#1e2818"/>
+  <rect x="85" y="95" width="30" height="25" rx="1" fill="#3a4828"/>
+</svg><div class="gi-cap" style="opacity:1">Летняя терраса</div></div>
+      <div class="gi g4" style="position:relative;overflow:hidden"><svg width="100%" height="100%" viewBox="0 0 200 150" fill="none">
+  <rect width="200" height="150" fill="#1a0a10"/>
+  <rect x="0" y="80" width="200" height="70" fill="#2a1018" opacity=".9"/>
+  <rect x="20" y="85" width="80" height="40" rx="3" fill="#3a1820" opacity=".8"/>
+  <rect x="25" y="90" width="70" height="30" rx="2" fill="#4a2028" opacity=".7"/>
+  <circle cx="40" cy="105" r="12" fill="#c44030" opacity=".3"/>
+  <circle cx="40" cy="105" r="8" fill="#e05030" opacity=".4"/>
+  <circle cx="70" cy="105" r="10" fill="#c44030" opacity=".2"/>
+  <rect x="120" y="40" width="60" height="110" rx="2" fill="#2a1018" opacity=".6"/>
+</svg><div class="gi-cap" style="opacity:1">Открытая кухня</div></div>
+      <div class="gi g5"><span>🏺</span><div class="gi-cap">Бар</div></div>
+      <div class="gi g6" style="position:relative;overflow:hidden"><svg width="100%" height="100%" viewBox="0 0 200 150" fill="none">
+  <rect width="200" height="150" fill="#080a1a"/>
+  <rect x="20" y="30" width="160" height="90" rx="8" fill="#10143a" opacity=".8"/>
+  <polygon points="100,15 105,30 120,30 108,38 113,54 100,45 87,54 92,38 80,30 95,30" fill="#c4a050" opacity=".4"/>
+  <rect x="50" y="60" width="100" height="40" rx="4" fill="#18204a" opacity=".7"/>
+  <rect x="60" y="68" width="35" height="24" rx="2" fill="#202860"/>
+  <rect x="105" y="68" width="35" height="24" rx="2" fill="#202860"/>
+</svg><div class="gi-cap" style="opacity:1">Вип-зал</div></div>
+    </div>
+  </div>
+
+  <!-- Quote -->
+  <div class="quote-sec">
+    <div class="quote-text reveal">«Грузия питается там, где дружба начинается за столом.»</div>
+    <div class="quote-auth">Грузинская пословица</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="f-logo">საკართველო</div>
+    <div class="f-links">
+      <a data-page="menu">Меню</a>
+      <a data-page="wine">Вина</a>
+      <a data-page="booking">Бронь</a>
+    </div>
+    <div class="f-copy">&copy; 2026 Sakartvelo. Все права защищены.</div>
+  </div>
+
+</section>
+
+<!-- ================================================================
+     MENU
+================================================================ -->
+<section class="page" id="pg-menu">
+  <div class="pg-hero">
+    <div class="pg-title">Меню</div>
+    <div class="pg-sub">Аутентичные грузинские блюда</div>
+  </div>
+  <div class="menu-layout">
+    <!-- Sidebar -->
+    <div class="menu-sidebar">
+      <p class="sidebar-title">Категории</p>
+      <button class="mcat active" data-cat="all">Всё меню</button>
+      <button class="mcat" data-cat="hot">Горячие блюда</button>
+      <button class="mcat" data-cat="khachapuri">Хачапури</button>
+      <button class="mcat" data-cat="meat">Мясные</button>
+      <button class="mcat" data-cat="soup">Супы</button>
+      <button class="mcat" data-cat="cold">Холодные закуски</button>
+      <button class="mcat" data-cat="dessert">Десерты</button>
+    </div>
+    <!-- Content -->
+    <div class="menu-content">
+      <h2 class="menu-sec-title">Всё меню</h2>
+      <div class="menu-grid">
+
+        <!-- Khachapuri -->
+        <div class="menu-card" data-cat="khachapuri">
+          <div class="mc-img" style="padding:16px"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <ellipse cx="40" cy="44" rx="30" ry="20" fill="#c4a050" opacity=".2"/>
+  <ellipse cx="40" cy="42" rx="22" ry="13" fill="#c4a050" opacity=".4"/>
+  <ellipse cx="40" cy="40" rx="14" ry="8" fill="#e8c97a" opacity=".7"/>
+  <circle cx="40" cy="38" r="5" fill="#f5e6b0"/>
+</svg></div>
+          <div class="mc-body">
+            <div class="mc-name">Хачапури по-аджарски</div>
+            <div class="mc-desc">Лодочка с сыром, яйцом и сливочным маслом</div>
+            <div class="mc-weight">380 г</div>
+          </div>
+          <div class="mc-foot">
+            <span class="mc-price">480 руб.</span>
+            <button class="btn-cart" onclick="Cart.add({id:'m1',name:'Хачапури по-аджарски',price:480})">+ В корзину</button>
+          </div>
+        </div>
+
+        <div class="menu-card" data-cat="khachapuri">
+          <div class="mc-img" style="padding:16px"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <ellipse cx="40" cy="44" rx="30" ry="20" fill="#c4a050" opacity=".2"/>
+  <ellipse cx="40" cy="42" rx="22" ry="13" fill="#c4a050" opacity=".4"/>
+  <ellipse cx="40" cy="40" rx="14" ry="8" fill="#e8c97a" opacity=".7"/>
+  <circle cx="40" cy="38" r="5" fill="#f5e6b0"/>
+</svg></div>
+          <div class="mc-body">
+            <div class="mc-name">Хачапури по-имеретински</div>
+            <div class="mc-desc">Закрытый пирог с сыром сулугуни</div>
+            <div class="mc-weight">320 г</div>
+          </div>
+          <div class="mc-foot">
+            <span class="mc-price">420 руб.</span>
+            <button class="btn-cart" onclick="Cart.add({id:'m2',name:'Хачапури по-имеретински',price:420})">+ В корзину</button>
+          </div>
+        </div>
+
+        <!-- Meat -->
+        <div class="menu-card" data-cat="meat">
+          <div class="mc-img" style="padding:16px"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <rect x="15" y="28" width="50" height="28" rx="14" fill="#8b3a1a" opacity=".25"/>
+  <rect x="20" y="32" width="40" height="20" rx="10" fill="#c4501a" opacity=".4"/>
+  <rect x="26" y="36" width="28" height="12" rx="6" fill="#e87040" opacity=".6"/>
+  <line x1="15" y1="42" x2="65" y2="42" stroke="#c4a050" stroke-width="1" opacity=".4"/>
+</svg></div>
+          <div class="mc-body">
+            <div class="mc-name">Хинкали</div>
+            <div class="mc-desc">Грузинские пельмени с говядиной и луком</div>
+            <div class="mc-weight">8 шт.</div>
+          </div>
+          <div class="mc-foot">
+            <span class="mc-price">620 руб.</span>
+            <button class="btn-cart" onclick="Cart.add({id:'m3',name:'Хинкали',price:620})">+ В корзину</button>
+          </div>
+        </div>
+
+        <div class="menu-card" data-cat="meat">
+          <div class="mc-img" style="padding:16px"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <ellipse cx="40" cy="44" rx="20" ry="16" fill="#c4a050" opacity=".25"/>
+  <ellipse cx="35" cy="34" rx="12" ry="10" fill="#c4a050" opacity=".4"/>
+  <circle cx="32" cy="30" r="6" fill="#e8c97a" opacity=".6"/>
+  <path d="M50 50 Q55 45 52 40" stroke="#c4a050" stroke-width="2" fill="none" opacity=".5"/>
+  <path d="M44 50 Q48 44 46 40" stroke="#c4a050" stroke-width="2" fill="none" opacity=".5"/>
+</svg></div>
+          <div class="mc-body">
+            <div class="mc-name">Сациви</div>
+            <div class="mc-desc">Тушеная курица с грецкими орехами и специями</div>
+            <div class="mc-weight">450 г</div>
+          </div>
+          <div class="mc-foot">
+            <span class="mc-price">780 руб.</span>
+            <button class="btn-cart" onclick="Cart.add({id:'m4',name:'Сациви',price:780})">+ В корзину</button>
+          </div>
+        </div>
+
+        <div class="menu-card" data-cat="meat">
+          <div class="mc-img" style="padding:16px"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <rect x="15" y="28" width="50" height="28" rx="14" fill="#8b3a1a" opacity=".25"/>
+  <rect x="20" y="32" width="40" height="20" rx="10" fill="#c4501a" opacity=".4"/>
+  <rect x="26" y="36" width="28" height="12" rx="6" fill="#e87040" opacity=".6"/>
+  <line x1="15" y1="42" x2="65" y2="42" stroke="#c4a050" stroke-width="1" opacity=".4"/>
+</svg></div>
+          <div class="mc-body">
+            <div class="mc-name">Мцвади</div>
+            <div class="mc-desc">Остро приправленная говядина с зеленью</div>
+            <div class="mc-weight">300 г</div>
+          </div>
+          <div class="mc-foot">
+            <span class="mc-price">890 руб.</span>
+            <button class="btn-cart" onclick="Cart.add({id:'m5',name:'Мцвади',price:890})">+ В корзину</button>
+          </div>
+        </div>
+
+        <!-- Hot -->
+        <div class="menu-card" data-cat="hot">
+          <div class="mc-img" style="padding:16px"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <ellipse cx="40" cy="48" rx="24" ry="14" fill="#c4a050" opacity=".2"/>
+  <path d="M16 44 Q40 58 64 44" stroke="#c4a050" stroke-width="2" fill="none" opacity=".5"/>
+  <path d="M22 36 L58 36 Q62 36 62 40 L62 44 Q40 54 18 44 L18 40 Q18 36 22 36Z" fill="#c4a050" opacity=".3"/>
+  <path d="M32 28 Q34 22 36 28" stroke="#c4a050" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M40 26 Q42 20 44 26" stroke="#c4a050" stroke-width="1.5" fill="none" opacity=".6"/>
+</svg></div>
+          <div class="mc-body">
+            <div class="mc-name">Одзахури</div>
+            <div class="mc-desc">Тушеная баранина с сыром и специями</div>
+            <div class="mc-weight">300 г</div>
+          </div>
+          <div class="mc-foot">
+            <span class="mc-price">340 руб.</span>
+            <button class="btn-cart" onclick="Cart.add({id:'m6',name:'Одзахури',price:340})">+ В корзину</button>
+          </div>
+        </div>
+
+        <div class="menu-card" data-cat="hot">
+          <div class="mc-img" style="padding:16px"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <ellipse cx="40" cy="44" rx="30" ry="20" fill="#c4a050" opacity=".2"/>
+  <ellipse cx="40" cy="42" rx="22" ry="13" fill="#c4a050" opacity=".4"/>
+  <ellipse cx="40" cy="40" rx="14" ry="8" fill="#e8c97a" opacity=".7"/>
+  <circle cx="40" cy="38" r="5" fill="#f5e6b0"/>
+</svg></div>
+          <div class="mc-body">
+            <div class="mc-name">Лобиани</div>
+            <div class="mc-desc">Фасоль в томатном соусе с пряностьюми</div>
+            <div class="mc-weight">250 г</div>
+          </div>
+          <div class="mc-foot">
+            <span class="mc-price">280 руб.</span>
+            <button class="btn-cart" onclick="Cart.add({id:'m7',name:'Лобиани',price:280})">+ В корзину</button>
+          </div>
+        </div>
+
+        <!-- Soup -->
+        <div class="menu-card" data-cat="soup">
+          <div class="mc-img" style="padding:16px"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <ellipse cx="40" cy="48" rx="24" ry="14" fill="#c4a050" opacity=".2"/>
+  <path d="M16 44 Q40 58 64 44" stroke="#c4a050" stroke-width="2" fill="none" opacity=".5"/>
+  <path d="M22 36 L58 36 Q62 36 62 40 L62 44 Q40 54 18 44 L18 40 Q18 36 22 36Z" fill="#c4a050" opacity=".3"/>
+  <path d="M32 28 Q34 22 36 28" stroke="#c4a050" stroke-width="1.5" fill="none" opacity=".6"/>
+  <path d="M40 26 Q42 20 44 26" stroke="#c4a050" stroke-width="1.5" fill="none" opacity=".6"/>
+</svg></div>
+          <div class="mc-body">
+            <div class="mc-name">Хаши</div>
+            <div class="mc-desc">Традиционный говяжий суп с вином</div>
+            <div class="mc-weight">350 мл</div>
+          </div>
+          <div class="mc-foot">
+            <span class="mc-price">420 руб.</span>
+            <button class="btn-cart" onclick="Cart.add({id:'m8',name:'Хаши',price:420})">+ В корзину</button>
+          </div>
+        </div>
+
+        <div class="menu-card" data-cat="soup">
+          <div class="mc-img" style="padding:16px"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <ellipse cx="40" cy="44" rx="30" ry="20" fill="#c4a050" opacity=".2"/>
+  <ellipse cx="40" cy="42" rx="22" ry="13" fill="#c4a050" opacity=".4"/>
+  <ellipse cx="40" cy="40" rx="14" ry="8" fill="#e8c97a" opacity=".7"/>
+  <circle cx="40" cy="38" r="5" fill="#f5e6b0"/>
+</svg></div>
+          <div class="mc-body">
+            <div class="mc-name">Харчо</div>
+            <div class="mc-desc">Острый суп из баранини с рисом</div>
+            <div class="mc-weight">350 мл</div>
+          </div>
+          <div class="mc-foot">
+            <span class="mc-price">380 руб.</span>
+            <button class="btn-cart" onclick="Cart.add({id:'m9',name:'Харчо',price:380})">+ В корзину</button>
+          </div>
+        </div>
+
+        <!-- Cold -->
+        <div class="menu-card" data-cat="cold">
+          <div class="mc-img" style="padding:16px"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <ellipse cx="40" cy="44" rx="30" ry="20" fill="#c4a050" opacity=".2"/>
+  <ellipse cx="40" cy="42" rx="22" ry="13" fill="#c4a050" opacity=".4"/>
+  <ellipse cx="40" cy="40" rx="14" ry="8" fill="#e8c97a" opacity=".7"/>
+  <circle cx="40" cy="38" r="5" fill="#f5e6b0"/>
+</svg></div>
+          <div class="mc-body">
+            <div class="mc-name">Пхали</div>
+            <div class="mc-desc">Толчёный фасолевый суп с грецкими орехами</div>
+            <div class="mc-weight">250 г</div>
+          </div>
+          <div class="mc-foot">
+            <span class="mc-price">290 руб.</span>
+            <button class="btn-cart" onclick="Cart.add({id:'m10',name:'Пхали',price:290})">+ В корзину</button>
+          </div>
+        </div>
+
+        <div class="menu-card" data-cat="cold">
+          <div class="mc-img" style="padding:16px"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <rect x="15" y="28" width="50" height="28" rx="14" fill="#8b3a1a" opacity=".25"/>
+  <rect x="20" y="32" width="40" height="20" rx="10" fill="#c4501a" opacity=".4"/>
+  <rect x="26" y="36" width="28" height="12" rx="6" fill="#e87040" opacity=".6"/>
+  <line x1="15" y1="42" x2="65" y2="42" stroke="#c4a050" stroke-width="1" opacity=".4"/>
+</svg></div>
+          <div class="mc-body">
+            <div class="mc-name">Бадрижани</div>
+            <div class="mc-desc">Пресованные баклажаны с орехами и специями</div>
+            <div class="mc-weight">200 г</div>
+          </div>
+          <div class="mc-foot">
+            <span class="mc-price">320 руб.</span>
+            <button class="btn-cart" onclick="Cart.add({id:'m11',name:'Бадрижани',price:320})">+ В корзину</button>
+          </div>
+        </div>
+
+        <!-- Dessert -->
+        <div class="menu-card" data-cat="dessert">
+          <div class="mc-img" style="padding:16px"><svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <rect x="28" y="52" width="24" height="8" rx="4" fill="#c4a050" opacity=".3"/>
+  <path d="M32 52 L32 28 Q32 22 40 22 Q48 22 48 28 L48 52Z" fill="#c4a050" opacity=".2"/>
+  <path d="M34 52 L34 30 Q34 26 40 26 Q46 26 46 30 L46 52Z" fill="#e8c97a" opacity=".4"/>
+  <ellipse cx="40" cy="26" rx="6" ry="3" fill="#c4a050" opacity=".6"/>
+  <circle cx="32" cy="38" r="3" fill="#e84040" opacity=".6"/>
+  <circle cx="48" cy="34" r="3" fill="#e84040" opacity=".6"/>
+</svg></div>
+          <div class="mc-body">
+            <div class="mc-name">Чурчхела</div>
+            <div class="mc-desc">Грузинская чурчхела с грецкими орехами</div>
+            <div class="mc-weight">150 г</div>
+          </div>
+          <div class="mc-foot">
+            <span class="mc-price">180 руб.</span>
+            <button class="btn-cart" onclick="Cart.add({id:'m12',name:'Чурчхела',price:180})">+ В корзину</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     WINE
+================================================================ -->
+<section class="page" id="pg-wine">
+  <div class="pg-hero">
+    <div class="pg-title">Винная карта</div>
+    <div class="pg-sub">Грузинские вина &bull; Более 60 позиций</div>
+  </div>
+  <div class="wine-filters">
+    <button class="wcat active" data-type="all">Все</button>
+    <button class="wcat" data-type="red">Красные</button>
+    <button class="wcat" data-type="white">Белые</button>
+    <button class="wcat" data-type="orange">Оранжевые</button>
+    <button class="wcat" data-type="sparkling">Игристые</button>
+  </div>
+  <div class="wine-grid">
+
+    <div class="wine-card" data-type="red">
+      <div class="wine-emoji"><svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <path d="M24 8 L40 8 L44 28 Q44 42 32 44 Q20 42 20 28Z" fill="#8b1a1a" opacity=".3"/>
+  <path d="M26 10 L38 10 L42 27 Q42 39 32 41 Q22 39 22 27Z" fill="#c02020" opacity=".5"/>
+  <rect x="30" y="44" width="4" height="12" fill="#8b1a1a" opacity=".5"/>
+  <rect x="24" y="56" width="16" height="3" rx="1.5" fill="#8b1a1a" opacity=".4"/>
+</svg></div>
+      <div class="wine-name">Саперави</div>
+      <div class="wine-region">Кахетия</div>
+      <div class="wine-desc">Грузинский куасевран. Тёмные ягоды, таннин. Отлично паруется с мясом.</div>
+      <div class="wine-badges"><span class="wb">Дры</span><span class="wb">2019</span><span class="wb">Квеври</span></div>
+      <div class="wine-foot">
+        <span class="wine-price">1 200 руб./бут.</span>
+        <button class="btn-cart" onclick="Cart.add({id:'w1',name:'Саперави 2019',price:1200})">+ В корзину</button>
+      </div>
+    </div>
+
+    <div class="wine-card" data-type="red">
+      <div class="wine-emoji"><svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <path d="M24 8 L40 8 L44 28 Q44 42 32 44 Q20 42 20 28Z" fill="#8b1a1a" opacity=".3"/>
+  <path d="M26 10 L38 10 L42 27 Q42 39 32 41 Q22 39 22 27Z" fill="#c02020" opacity=".5"/>
+  <rect x="30" y="44" width="4" height="12" fill="#8b1a1a" opacity=".5"/>
+  <rect x="24" y="56" width="16" height="3" rx="1.5" fill="#8b1a1a" opacity=".4"/>
+</svg></div>
+      <div class="wine-name">Мукузани</div>
+      <div class="wine-region">Кахетия</div>
+      <div class="wine-desc">Традиционное квеври. Плумы, вишня, специи. Длительное послевкусие.</div>
+      <div class="wine-badges"><span class="wb">Дры</span><span class="wb">2020</span></div>
+      <div class="wine-foot">
+        <span class="wine-price">980 руб./бут.</span>
+        <button class="btn-cart" onclick="Cart.add({id:'w2',name:'Мукузани 2020',price:980})">+ В корзину</button>
+      </div>
+    </div>
+
+    <div class="wine-card" data-type="white">
+      <div class="wine-emoji"><svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <path d="M24 8 L40 8 L44 28 Q44 42 32 44 Q20 42 20 28Z" fill="#c8b840" opacity=".2"/>
+  <path d="M26 10 L38 10 L42 27 Q42 39 32 41 Q22 39 22 27Z" fill="#e8d870" opacity=".5"/>
+  <rect x="30" y="44" width="4" height="12" fill="#c8b840" opacity=".5"/>
+  <rect x="24" y="56" width="16" height="3" rx="1.5" fill="#c8b840" opacity=".4"/>
+</svg></div>
+      <div class="wine-name">Ркацители</div>
+      <div class="wine-region">Кахетия</div>
+      <div class="wine-desc">Свежее белое вино. Цитрус, зелёное яблоко, минеральность.</div>
+      <div class="wine-badges"><span class="wb">Полусухое</span><span class="wb">2022</span></div>
+      <div class="wine-foot">
+        <span class="wine-price">860 руб./бут.</span>
+        <button class="btn-cart" onclick="Cart.add({id:'w3',name:'Ркацители 2022',price:860})">+ В корзину</button>
+      </div>
+    </div>
+
+    <div class="wine-card" data-type="white">
+      <div class="wine-emoji"><svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <path d="M24 8 L40 8 L44 28 Q44 42 32 44 Q20 42 20 28Z" fill="#c8b840" opacity=".2"/>
+  <path d="M26 10 L38 10 L42 27 Q42 39 32 41 Q22 39 22 27Z" fill="#e8d870" opacity=".5"/>
+  <rect x="30" y="44" width="4" height="12" fill="#c8b840" opacity=".5"/>
+  <rect x="24" y="56" width="16" height="3" rx="1.5" fill="#c8b840" opacity=".4"/>
+</svg></div>
+      <div class="wine-name">Мцване</div>
+      <div class="wine-region">Имерети</div>
+      <div class="wine-desc">Деликатное белое. Цветки, персик, мёд.</div>
+      <div class="wine-badges"><span class="wb">Сухое</span><span class="wb">2021</span></div>
+      <div class="wine-foot">
+        <span class="wine-price">920 руб./бут.</span>
+        <button class="btn-cart" onclick="Cart.add({id:'w4',name:'Мцване 2021',price:920})">+ В корзину</button>
+      </div>
+    </div>
+
+    <div class="wine-card" data-type="orange">
+      <div class="wine-emoji"><svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <path d="M24 8 L40 8 L44 28 Q44 42 32 44 Q20 42 20 28Z" fill="#c87020" opacity=".25"/>
+  <path d="M26 10 L38 10 L42 27 Q42 39 32 41 Q22 39 22 27Z" fill="#e89040" opacity=".5"/>
+  <rect x="30" y="44" width="4" height="12" fill="#c87020" opacity=".5"/>
+  <rect x="24" y="56" width="16" height="3" rx="1.5" fill="#c87020" opacity=".4"/>
+</svg></div>
+      <div class="wine-name">Ркацители (квеври)</div>
+      <div class="wine-region">Кахетия</div>
+      <div class="wine-desc">Оранжевое. Мед, орехи, апельсин.</div>
+      <div class="wine-badges"><span class="wb">Квеври</span><span class="wb">2020</span></div>
+      <div class="wine-foot">
+        <span class="wine-price">1 100 руб./бут.</span>
+        <button class="btn-cart" onclick="Cart.add({id:'w5',name:'Ркацители квеври',price:1100})">+ В корзину</button>
+      </div>
+    </div>
+
+    <div class="wine-card" data-type="sparkling">
+      <div class="wine-emoji"><svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <path d="M26 8 L38 8 L44 28 Q44 42 32 44 Q20 42 20 28Z" fill="#4060b0" opacity=".25"/>
+  <path d="M28 10 L36 10 L41 27 Q41 39 32 41 Q23 39 23 27Z" fill="#80a0e0" opacity=".5"/>
+  <rect x="30" y="44" width="4" height="12" fill="#4060b0" opacity=".5"/>
+  <circle cx="30" cy="22" r="1.5" fill="white" opacity=".7"/>
+  <circle cx="35" cy="18" r="1" fill="white" opacity=".7"/>
+  <circle cx="28" cy="30" r="1.5" fill="white" opacity=".7"/>
+</svg></div>
+      <div class="wine-name">Шумный Мускатель</div>
+      <div class="wine-region">Тбилиси</div>
+      <div class="wine-desc">Игристое. Свежие фрукты, мускатные ароматы.</div>
+      <div class="wine-badges"><span class="wb">Полусладкое</span><span class="wb">NV</span></div>
+      <div class="wine-foot">
+        <span class="wine-price">1 400 руб./бут.</span>
+        <button class="btn-cart" onclick="Cart.add({id:'w6',name:'Шумный Мускатель',price:1400})">+ В корзину</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================================
+     BOOKING
+================================================================ -->
+<section class="page" id="pg-booking">
+  <div class="pg-hero">
+    <div class="pg-title">Бронирование</div>
+    <div class="pg-sub">Забронируйте стол и предзакажите еду заранее</div>
+  </div>
+  <div class="booking-wrap">
+    <form class="book-form" id="bookForm" autocomplete="off">
+
+      <!-- Контактные данные -->
+      <div class="form-sec">
+        <div class="form-sec-h"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="6" r="4" stroke="#c4a050" stroke-width="1.5"/><path d="M2 18c0-4 3.6-7 8-7s8 3 8 7" stroke="#c4a050" stroke-width="1.5" stroke-linecap="round"/></svg> Контактные данные</div>
+        <div class="form-row">
+          <div class="fg">
+            <label class="fl">Имя</label>
+            <input type="text" id="bName" placeholder="Иван Петров" required>
+          </div>
+          <div class="fg">
+            <label class="fl">Email (для подтверждения)</label>
+            <input type="email" id="bEmail" placeholder="ivan@gmail.com" required>
+          </div>
+        </div>
+        <div class="form-row" style="margin-top:16px">
+          <div class="fg">
+            <label class="fl">Телефон</label>
+            <div class="phone-wrap">
+              <button type="button" class="phone-code" id="phoneCodeBtn">
+                <span class="pc-flag" id="pcFlag">🇷🇺</span>
+                <span class="pc-code" id="pcCode">+7</span>
+                <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="#8a7a60" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+              <input type="tel" id="bPhone" placeholder="999 000 00 00" required>
+              <div class="phone-dropdown" id="phoneDropdown">
+                <input class="pd-search" id="pdSearch" placeholder="Поиск..." type="text">
+                <div class="pd-list" id="pdList"></div>
+              </div>
+            </div>
+          </div>
+          <div class="fg">
+            <label class="fl">Количество гостей</label>
+            <div class="g-counter">
+              <button type="button" class="cnt-btn" id="gMinus">−</button>
+              <input type="number" id="bGuests" value="2" min="1" max="20">
+              <button type="button" class="cnt-btn" id="gPlus">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Дата и время -->
+      <div class="form-sec">
+        <div class="form-sec-h"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="14" rx="2" stroke="#c4a050" stroke-width="1.5"/><line x1="6" y1="2" x2="6" y2="6" stroke="#c4a050" stroke-width="1.5" stroke-linecap="round"/><line x1="14" y1="2" x2="14" y2="6" stroke="#c4a050" stroke-width="1.5" stroke-linecap="round"/><line x1="2" y1="9" x2="18" y2="9" stroke="#c4a050" stroke-width="1.5"/></svg> Дата и время</div>
+        <div class="form-row">
+          <div class="fg">
+            <label class="fl">Дата</label>
+            <input type="date" id="bDate" required>
+          </div>
+          <div class="fg">
+            <label class="fl">Время</label>
+            <div class="t-slots" id="timeSlots"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Выбор стола -->
+      <div class="form-sec">
+        <div class="form-sec-h"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><ellipse cx="10" cy="10" rx="8" ry="5" stroke="#c4a050" stroke-width="1.5"/><line x1="4" y1="13" x2="2" y2="18" stroke="#c4a050" stroke-width="1.5" stroke-linecap="round"/><line x1="16" y1="13" x2="18" y2="18" stroke="#c4a050" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="15" x2="10" y2="19" stroke="#c4a050" stroke-width="1.5" stroke-linecap="round"/></svg> Выберите столик</div>
+        <p style="font-size:.78rem;color:#8a7a60;margin-bottom:16px">Нажмите на столик, чтобы выбрать его</p>
+        <div class="t-map" id="tableMap"></div>
+        <div id="tableInfo"></div>
+      </div>
+
+      <!-- Предзаказ из корзины -->
+      <div id="preorderBlock">
+        <h3>Ваш предзаказ</h3>
+        <ul id="preorderList"></ul>
+        <div id="preorderTotal"></div>
+      </div>
+
+      <!-- Пожелания -->
+      <div class="form-sec">
+        <div class="form-sec-h"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M18 10c0 4-3.6 7-8 7a8.8 8.8 0 01-3.4-.7L2 18l1.7-4.6A7 7 0 012 10C2 6 5.6 3 10 3s8 3 8 7z" stroke="#c4a050" stroke-width="1.5" stroke-linejoin="round"/></svg> Пожелания</div>
+        <textarea id="bWishes" rows="3" placeholder="Аллергии, особые пожелания, день рождения..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-book">Забронировать стол &rarr;</button>
+
+    </form>
+  </div>
+</section>
+
+<!-- ================================================================
+     MODAL: Подтверждение бронирования
+================================================================ -->
+<div class="modal" id="confModal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-box">
+    <button class="modal-close">✕</button>
+    <div class="conf-icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <path d="M24 8 L40 8 L44 28 Q44 42 32 44 Q20 42 20 28Z" fill="#8b1a1a" opacity=".3"/>
+  <path d="M26 10 L38 10 L42 27 Q42 39 32 41 Q22 39 22 27Z" fill="#c02020" opacity=".5"/>
+  <rect x="30" y="44" width="4" height="12" fill="#8b1a1a" opacity=".5"/>
+  <rect x="24" y="56" width="16" height="3" rx="1.5" fill="#8b1a1a" opacity=".4"/>
+</svg></div>
+    <h2 class="conf-title">Бронь подтверждена!</h2>
+    <p class="conf-sub">Спасибо, что выбрали Sakartvelo</p>
+    <div class="conf-id"><span id="confId">SK-XXXXXX</span></div>
+    <div class="conf-rows">
+      <div class="conf-row"><span>Гость</span><span id="confName"></span></div>
+      <div class="conf-row"><span>Дата</span><span id="confDate"></span></div>
+      <div class="conf-row"><span>Время</span><span id="confTime"></span></div>
+      <div class="conf-row"><span>Стол</span><span id="confTable"></span></div>
+      <div class="conf-row"><span>Гостей</span><span id="confGuests"></span></div>
+    </div>
+    <div class="conf-email-note">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+  <rect x="2" y="4" width="16" height="12" rx="2" stroke="#c4a050" stroke-width="1.5"/>
+  <path d="M2 7l8 5 8-5" stroke="#c4a050" stroke-width="1.5" stroke-linecap="round"/>
+</svg> Подтверждение отправлено на <strong id="confEmail"></strong>
+    </div>
+  </div>
+</div>
+
+
+<!-- Validation Modal -->
+<div class="val-modal" id="valModal">
+  <div class="val-box">
+    <div class="val-icon" id="valIcon">⚠</div>
+    <p class="val-msg" id="valMsg"></p>
+    <button class="val-ok" id="valOk">Понял</button>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <div class="lb-inner"></div>
+</div>
+
+<!-- Scripts -->
+<script src="js/config.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/booking.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
