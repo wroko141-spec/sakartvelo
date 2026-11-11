@@ -10,6 +10,7 @@ function showPage(name) {
   document.querySelectorAll('[data-page]').forEach(l =>
     l.classList.toggle('active', l.dataset.page === name));
   if (name === 'booking') { Booking.refreshSlots(); Booking.refreshTables(); }
+  if (pg && location.hash.slice(1) !== name) history.replaceState(null, '', name === 'home' ? location.pathname : '#' + name);
   setTimeout(revealCheck, 100);
 }
 
@@ -286,5 +287,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-page]').forEach(el =>
     el.addEventListener('click', () => showPage(el.dataset.page)));
 
-  showPage('home');
+  const PAGES = ['home','menu','wine','booking'];
+  const fromHash = () => PAGES.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
+  showPage(fromHash());
+  window.addEventListener('hashchange', () => showPage(fromHash()));
 });
